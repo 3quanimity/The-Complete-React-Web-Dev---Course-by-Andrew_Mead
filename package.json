@@ -1,0 +1,15 @@
+{
+  "name": "indecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Haythem Ben Drissia",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  },
+  "scripts": {
+    "compile": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "dev": "live-server public"
+  }
+}
