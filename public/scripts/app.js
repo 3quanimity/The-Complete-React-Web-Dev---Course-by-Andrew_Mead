@@ -18,9 +18,9 @@ var IndecisionApp = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
 
     _this.state = {
-      title: "Indecision App",
+      // title: "Indecision App",
       subtitle: "Put your life in the hands of a computer",
-      options: []
+      options: props.options
     };
 
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
@@ -70,7 +70,7 @@ var IndecisionApp = function (_React$Component) {
       return React.createElement(
         "div",
         null,
-        React.createElement(Header, { title: this.state.title, subtitle: this.state.subtitle }),
+        React.createElement(Header /*title={this.state.title}*/, { subtitle: this.state.subtitle }),
         React.createElement(Action, {
           hasOptions: this.state.options.length > 0,
           handlePick: this.handlePick
@@ -87,6 +87,10 @@ var IndecisionApp = function (_React$Component) {
   return IndecisionApp;
 }(React.Component);
 
+IndecisionApp.defaultProps = {
+  options: []
+};
+
 var Header = function Header(_ref) {
   var title = _ref.title,
       subtitle = _ref.subtitle;
@@ -98,12 +102,16 @@ var Header = function Header(_ref) {
       null,
       title
     ),
-    React.createElement(
+    subtitle && React.createElement(
       "h2",
       null,
       subtitle
     )
   );
+};
+
+Header.defaultProps = {
+  title: "Indecision App" // define default value and let other pages override it when needed
 };
 
 var Action = function Action(_ref2) {

@@ -3,9 +3,9 @@ class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Indecision App",
+      // title: "Indecision App",
       subtitle: "Put your life in the hands of a computer",
-      options: [],
+      options: props.options,
     };
 
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
@@ -44,7 +44,7 @@ class IndecisionApp extends React.Component {
     console.log(this.state.options);
     return (
       <div>
-        <Header title={this.state.title} subtitle={this.state.subtitle} />
+        <Header /*title={this.state.title}*/ subtitle={this.state.subtitle} />
         <Action
           hasOptions={this.state.options.length > 0}
           handlePick={this.handlePick}
@@ -59,12 +59,20 @@ class IndecisionApp extends React.Component {
   }
 }
 
+IndecisionApp.defaultProps = {
+  options: [],
+};
+
 const Header = ({ title, subtitle }) => (
   <div>
     <h1>{title}</h1>
-    <h2>{subtitle}</h2>
+    {subtitle && <h2>{subtitle}</h2>}
   </div>
 );
+
+Header.defaultProps = {
+  title: "Indecision App", // define default value and let other pages override it when needed
+};
 
 const Action = ({ handlePick, hasOptions }) => (
   <div>
