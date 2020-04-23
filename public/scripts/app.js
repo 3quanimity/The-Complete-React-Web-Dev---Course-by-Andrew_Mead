@@ -30,10 +30,47 @@ var IndecisionApp = function (_React$Component) {
     return _this;
   }
 
-  // Event handlers
+  // Life Cycle Methods
 
 
   _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // Fetch stored data here (fetching from local storage in this case)
+      try {
+        var json = localStorage.getItem("options");
+        var options = JSON.parse(json);
+
+        if (options) {
+          this.setState(function () {
+            return { options: options };
+          });
+        }
+      } catch (error) {
+        // Do nothing at all
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      // Save data here (saving into local storage in this case)
+      // useful for when component data has changed
+
+      //if options array didnt change no need to save it in local storage with each component update
+      if (prevState.options.length !== this.state.options.length) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem("options", json);
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {}
+    // Cleaning here
+
+
+    // Event handlers
+
+  }, {
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
       this.setState(function () {
@@ -149,6 +186,11 @@ var Options = function Options(_ref3) {
   return React.createElement(
     "div",
     null,
+    options.length === 0 && React.createElement(
+      "p",
+      null,
+      "Please add an option to get started"
+    ),
     React.createElement(
       "button",
       { onClick: handleDeleteOptions },
@@ -209,7 +251,9 @@ var AddOption = function (_React$Component2) {
         return { error: error };
       });
 
-      e.target.optionInput.value = "";
+      if (!error) {
+        e.target.optionInput.value = "";
+      }
     }
   }, {
     key: "render",

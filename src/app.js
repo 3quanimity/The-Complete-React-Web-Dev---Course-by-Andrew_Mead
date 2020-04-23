@@ -15,6 +15,36 @@ class IndecisionApp extends React.Component {
     this.handleDeleteOption = this.handleDeleteOption.bind(this);
   }
 
+  // Life Cycle Methods
+  componentDidMount() {
+    // Fetch stored data here (fetching from local storage in this case)
+    try {
+      const json = localStorage.getItem("options");
+      const options = JSON.parse(json);
+
+      if (options) {
+        this.setState(() => ({ options }));
+      }
+    } catch (error) {
+      // Do nothing at all
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // Save data here (saving into local storage in this case)
+    // useful for when component data has changed
+
+    //if options array didnt change no need to save it in local storage with each component update
+    if (prevState.options.length !== this.state.options.length) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem("options", json);
+    }
+  }
+
+  componentWillUnmount() {
+    // Cleaning here
+  }
+
   // Event handlers
   handleDeleteOptions() {
     this.setState(() => ({ options: [] }));
@@ -90,6 +120,7 @@ const Action = ({ handlePick, hasOptions }) => (
 
 const Options = ({ handleDeleteOptions, options, handleDeleteOption }) => (
   <div>
+    {options.length === 0 && <p>Please add an option to get started</p>}
     <button onClick={handleDeleteOptions}>Remove All</button>
     {options.map((el, i) => (
       <Option optionText={el} key={i} handleDeleteOption={handleDeleteOption} />
@@ -122,7 +153,9 @@ class AddOption extends React.Component {
 
     this.setState(() => ({ error }));
 
-    e.target.optionInput.value = "";
+    if (!error) {
+      e.target.optionInput.value = "";
+    }
   }
 
   render() {
