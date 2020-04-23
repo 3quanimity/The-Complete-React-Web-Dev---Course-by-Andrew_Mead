@@ -6,7 +6,7 @@ class IndecisionApp extends React.Component {
     this.state = {
       // title: "Indecision App",
       subtitle: "Put your life in the hands of a computer",
-      options: props.options,
+      options: [],
     };
 
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
@@ -94,10 +94,6 @@ class IndecisionApp extends React.Component {
     );
   }
 }
-
-IndecisionApp.defaultProps = {
-  options: [],
-};
 
 const Header = ({ title, subtitle }) => (
   <div>

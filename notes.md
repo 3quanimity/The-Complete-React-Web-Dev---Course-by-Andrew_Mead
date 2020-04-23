@@ -14,3 +14,5 @@
 | Changes (from above) cause re-renders | Can cause re-renders               |
 | Comes from above                      | Defined in component itself        |
 | Can't be changed by component itself  | Can be changed by component itself |
+
+- storing data to local storage
