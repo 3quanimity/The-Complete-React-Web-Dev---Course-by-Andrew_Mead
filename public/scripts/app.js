@@ -26,6 +26,7 @@ var IndecisionApp = function (_React$Component) {
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.handlePick = _this.handlePick.bind(_this);
     _this.handleAddOption = _this.handleAddOption.bind(_this);
+    _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
     return _this;
   }
 
@@ -37,6 +38,17 @@ var IndecisionApp = function (_React$Component) {
     value: function handleDeleteOptions() {
       this.setState(function () {
         return { options: [] };
+      });
+    }
+  }, {
+    key: "handleDeleteOption",
+    value: function handleDeleteOption(optionToRemove) {
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (el) {
+            return el !== optionToRemove;
+          })
+        };
       });
     }
   }, {
@@ -57,7 +69,9 @@ var IndecisionApp = function (_React$Component) {
       }
 
       this.setState(function (prevState) {
-        return { options: prevState.options.concat(option) };
+        return {
+          options: prevState.options.concat(option)
+        };
       });
     }
 
@@ -66,7 +80,6 @@ var IndecisionApp = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state.options);
       return React.createElement(
         "div",
         null,
@@ -77,7 +90,8 @@ var IndecisionApp = function (_React$Component) {
         }),
         React.createElement(Options, {
           options: this.state.options,
-          handleDeleteOptions: this.handleDeleteOptions
+          handleDeleteOptions: this.handleDeleteOptions,
+          handleDeleteOption: this.handleDeleteOption
         }),
         React.createElement(AddOption, { handleAddOption: this.handleAddOption })
       );
@@ -130,7 +144,8 @@ var Action = function Action(_ref2) {
 
 var Options = function Options(_ref3) {
   var handleDeleteOptions = _ref3.handleDeleteOptions,
-      options = _ref3.options;
+      options = _ref3.options,
+      handleDeleteOption = _ref3.handleDeleteOption;
   return React.createElement(
     "div",
     null,
@@ -140,13 +155,14 @@ var Options = function Options(_ref3) {
       "Remove All"
     ),
     options.map(function (el, i) {
-      return React.createElement(Option, { optionText: el, key: i });
+      return React.createElement(Option, { optionText: el, key: i, handleDeleteOption: handleDeleteOption });
     })
   );
 };
 
 var Option = function Option(_ref4) {
-  var optionText = _ref4.optionText;
+  var optionText = _ref4.optionText,
+      handleDeleteOption = _ref4.handleDeleteOption;
   return React.createElement(
     "div",
     null,
@@ -154,6 +170,13 @@ var Option = function Option(_ref4) {
       "p",
       null,
       optionText
+    ),
+    React.createElement(
+      "button",
+      { onClick: function onClick(e) {
+          return handleDeleteOption(optionText);
+        } },
+      "Remove"
     )
   );
 };
