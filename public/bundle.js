@@ -70,12 +70,16 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person__ = __webpack_require__(2);
 // import "./utils.js";
 
 
+
 console.log("app.js is running!");
-console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* square */](2));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* square */](2));
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](2, 5));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* default */](2, 5));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["a" /* default */](62));
 
 
 /***/ }),
@@ -83,19 +87,35 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](2, 5));
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return square; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return square; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return add; });
 // Utility Functions
 console.log("utils.js is running");
 
 const square = (x) => x * x;
 
-const add = (a, b) => a + b;
-/* harmony export (immutable) */ __webpack_exports__["a"] = add;
- // direct named export
+/* export */ const add = (a, b) => a + b; // 1. direct named export
 
-// every file can have : a single default exports -&- as many named exports as u like
-// Named exports: (not an object definition!)
+const subtract = (a, b) => a - b;
+/* harmony default export */ __webpack_exports__["b"] = (subtract); // 2. direct default export - can't be done before a var declaration
 
+// 🔔  Every file can have : a single default exports -&- as many named exports as u like
+// (not an object definition!)
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const isAdult = (age) => age >= 18;
+/* unused harmony export isAdult */
+
+const canDrink = (age) => age >= 21;
+/* unused harmony export canDrink */
+
+/* harmony default export */ __webpack_exports__["a"] = ((age) => age >= 65);
 
 
 /***/ })
