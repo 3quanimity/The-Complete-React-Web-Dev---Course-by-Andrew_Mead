@@ -16,3 +16,5 @@
 | Can't be changed by component itself  | Can be changed by component itself |
 
 - storing data to local storage
+
+- webpack
