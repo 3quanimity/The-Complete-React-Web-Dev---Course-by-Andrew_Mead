@@ -65,9 +65,37 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-console.log("app.js is running!33");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
+// import "./utils.js";
+
+
+console.log("app.js is running!");
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* square */](2));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](2, 5));
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return square; });
+// Utility Functions
+console.log("utils.js is running");
+
+const square = (x) => x * x;
+
+const add = (a, b) => a + b;
+/* harmony export (immutable) */ __webpack_exports__["a"] = add;
+ // direct named export
+
+// every file can have : a single default exports -&- as many named exports as u like
+// Named exports: (not an object definition!)
+
 
 
 /***/ })
