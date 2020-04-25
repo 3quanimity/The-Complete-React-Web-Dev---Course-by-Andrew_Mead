@@ -18,3 +18,4 @@
 - storing data to local storage
 
 - webpack
+- babel

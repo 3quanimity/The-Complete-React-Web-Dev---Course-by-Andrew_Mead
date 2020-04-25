@@ -5,23 +5,44 @@ import Options from "./Options";
 import Action from "./Action";
 
 export default class IndecisionApp extends React.Component {
-  // Constructor (State & Binding this)
-  constructor(props) {
-    super(props);
+  // 🔔 State
+  state = {
+    // title: "Indecision App",
+    subtitle: "Put your life in the hands of a computer",
+    options: [],
+  };
 
-    this.state = {
-      // title: "Indecision App",
-      subtitle: "Put your life in the hands of a computer",
-      options: [],
-    };
+  // 🔔 Event handlers
+  handleDeleteOptions = () => {
+    this.setState(() => ({ options: [] }));
+  };
 
-    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.handleDeleteOption = this.handleDeleteOption.bind(this);
-  }
+  handleDeleteOption = (optionToRemove) => {
+    this.setState((prevState) => ({
+      options: prevState.options.filter((el) => el !== optionToRemove),
+    }));
+  };
 
-  // Life Cycle Methods
+  handlePick = () => {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(option);
+  };
+
+  handleAddOption = (option) => {
+    // validation
+    if (!option) {
+      return "Please enter a valid value!";
+    } else if (this.state.options.indexOf(option) > -1) {
+      return "Option already exists!";
+    }
+
+    this.setState((prevState) => ({
+      options: prevState.options.concat(option),
+    }));
+  };
+
+  // 🔔 Life Cycle Methods
   componentDidMount() {
     // Fetch stored data here (fetching from local storage in this case)
     try {
@@ -51,37 +72,7 @@ export default class IndecisionApp extends React.Component {
     // Cleaning here
   }
 
-  // Event handlers
-  handleDeleteOptions() {
-    this.setState(() => ({ options: [] }));
-  }
-
-  handleDeleteOption(optionToRemove) {
-    this.setState((prevState) => ({
-      options: prevState.options.filter((el) => el !== optionToRemove),
-    }));
-  }
-
-  handlePick() {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    alert(option);
-  }
-
-  handleAddOption(option) {
-    // validation
-    if (!option) {
-      return "Please enter a valid value!";
-    } else if (this.state.options.indexOf(option) > -1) {
-      return "Option already exists!";
-    }
-
-    this.setState((prevState) => ({
-      options: prevState.options.concat(option),
-    }));
-  }
-
-  // Rendering
+  // 🔔 Rendering
   render() {
     return (
       <div>
