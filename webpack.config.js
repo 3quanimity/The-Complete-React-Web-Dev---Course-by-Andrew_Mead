@@ -19,4 +19,8 @@ module.exports = {
   },
   // Source Map
   devtool: "eval-cheap-source-map",
+  // Dev Server
+  devServer: {
+    contentBase: path.join(__dirname, "public"), // absolute path
+  },
 };
