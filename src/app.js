@@ -1,9 +1,6 @@
-// import "./utils.js";
-import subtract, { square, add } from "./utils.js";
-import isSenior from "./person";
+import React from "react";
+import ReactDOM from "react-dom";
 
-console.log("app.js is running!");
-console.log(square(2));
-console.log(add(2, 5));
-console.log(subtract(2, 5));
-console.log(isSenior(62));
+const template = <p>jsx with babel from webpack</p>;
+
+ReactDOM.render(template, document.getElementById("root"));
