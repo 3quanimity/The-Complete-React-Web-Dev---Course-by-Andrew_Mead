@@ -15,6 +15,14 @@ module.exports = {
         test: /\.js$/, // regular expression to target only files ending with ".js"
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        use: [
+          // allow the use of multiple loaders (in an array)
+          "style-loader",
+          "css-loader",
+        ],
+      },
     ],
   },
   // Source Map
