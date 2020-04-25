@@ -19,3 +19,5 @@
 
 - webpack
 - babel
+
+- React Modal
