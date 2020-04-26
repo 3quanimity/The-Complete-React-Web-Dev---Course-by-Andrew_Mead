@@ -16,7 +16,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           // allow the use of multiple loaders (in an array)
           "style-loader",
