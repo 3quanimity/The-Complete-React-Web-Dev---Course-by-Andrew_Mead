@@ -21,3 +21,5 @@
 - babel
 
 - React Modal
+
+- sass for styling
