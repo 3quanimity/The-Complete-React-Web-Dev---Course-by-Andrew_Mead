@@ -16,11 +16,12 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           // allow the use of multiple loaders (in an array)
           "style-loader",
           "css-loader",
+          "sass-loader",
         ],
       },
     ],
